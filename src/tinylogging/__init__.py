@@ -78,8 +78,11 @@ class BaseHandler(ABC):
 
     @abstractmethod
     def emit(self, record: Record) -> None:
-        pass
+        raise NotImplementedError
 
+    def handle(self, record: Record):
+        if record.level >= self.level:
+            self.emit(record)
 
 class StreamHandler(BaseHandler):
     def __init__(
@@ -135,7 +138,7 @@ class Logger:
         record = Record(message, level, self.name)
 
         for handler in self.handlers:
-            handler.emit(record)
+            handler.handle(record)
 
     def trace(self, message: str):
         self.log(message, level=Level.TRACE)
