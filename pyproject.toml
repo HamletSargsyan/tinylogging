@@ -5,9 +5,18 @@ description = ""
 authors = ["Hamlet <hamlets849@gmail.com>"]
 license = "MIT"
 readme = "README.md"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Developers"
+]
 
 [tool.poetry.dependencies]
-python = "^3.12"
+python = "^3.8"
 colorama = "^0.4.6"
 
 [tool.poetry.group.dev.dependencies]
