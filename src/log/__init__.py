@@ -1,12 +1,9 @@
-from colorama import Fore, Style, init
+from colorama import Fore, Style
 from dataclasses import dataclass, field
 from datetime import datetime
 from enum import IntEnum, auto
 import sys
 from typing import Optional
-
-
-init()
 
 
 class Level(IntEnum):
