@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "log"
+name = "tinylogging"
 version = "0.1.0"
 description = ""
 authors = ["Hamlet <hamlets849@gmail.com>"]
