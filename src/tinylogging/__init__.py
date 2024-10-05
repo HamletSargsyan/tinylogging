@@ -129,7 +129,7 @@ class LoggingAdapterHandler(logging.Handler):
 
     def emit(self, record: logging.LogRecord):
         level = Level[record.levelname]  # cspell: disable-line
-        custom_record = Record(message=record.msg, level=level, name=record.name)
+        custom_record = Record(message=self.format(record), level=level, name=record.name)
         self.custom_handler.handle(custom_record)
 
 
