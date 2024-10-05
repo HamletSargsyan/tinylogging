@@ -1,3 +1,4 @@
+import logging
 import sys
 
 from datetime import datetime
@@ -84,6 +85,7 @@ class BaseHandler(ABC):
         if record.level >= self.level:
             self.emit(record)
 
+
 class StreamHandler(BaseHandler):
     def __init__(
         self,
@@ -115,6 +117,20 @@ class FileHandler(BaseHandler):
         with open(self.file_name, "a") as f:
             f.write(message)
             f.flush()
+
+
+class LoggingAdapterHandler(logging.Handler):
+    def __init__(
+        self,
+        handler: BaseHandler,
+    ):
+        super().__init__()
+        self.custom_handler = handler
+
+    def emit(self, record: logging.LogRecord):
+        level = Level[record.levelname]  # cspell: disable-line
+        custom_record = Record(message=record.msg, level=level, name=record.name)
+        self.custom_handler.handle(custom_record)
 
 
 class Logger:
