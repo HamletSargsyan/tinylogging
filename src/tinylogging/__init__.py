@@ -10,6 +10,19 @@ from dataclasses import dataclass, field
 from colorama import Fore, Style
 
 
+__all__ = [
+    "Level",
+    "COLOR_MAP",
+    "Record",
+    "Formatter",
+    "BaseHandler",
+    "StreamHandler",
+    "FileHandler",
+    "LoggingAdapterHandler",
+    "Logger",
+]
+
+
 class Level(IntEnum):
     NOTSET = auto()
     TRACE = auto()
@@ -129,7 +142,9 @@ class LoggingAdapterHandler(logging.Handler):
 
     def emit(self, record: logging.LogRecord):
         level = Level[record.levelname]  # cspell: disable-line
-        custom_record = Record(message=self.format(record), level=level, name=record.name)
+        custom_record = Record(
+            message=self.format(record), level=level, name=record.name
+        )
         self.custom_handler.handle(custom_record)
 
 
