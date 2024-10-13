@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## [Unreleased]
+
+### Added
+
+- Async support
+- Added new dependency: `anyio`
+
+### Changed
+
+- Modified the structure and imports of modules for better code organization
+
 ## [2.2.0] - 2024-10-05
 
 ### Fixed

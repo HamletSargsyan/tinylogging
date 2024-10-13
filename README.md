@@ -1,4 +1,4 @@
-# tiny-logging
+# tinylogging
 
 ## Install
 
