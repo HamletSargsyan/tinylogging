@@ -1,5 +1,11 @@
 # tinylogging
 
+![GitHub License](https://img.shields.io/github/license/HamletSargsyan/tinylogging)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/HamletSargsyan/tinylogging)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/tinylogging)
+![PyPI - Version](https://img.shields.io/pypi/v/tinylogging)
+
+
 ## Install
 
 ```bash
