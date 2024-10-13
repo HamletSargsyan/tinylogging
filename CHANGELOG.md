@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## [Unreleased]
+## [3.0.0] - 2024-10-13
 
 ### Added
 
