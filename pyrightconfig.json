@@ -1,4 +1,5 @@
 {
+    "typeCheckingMode": "basic",
     "include": [
         "src",
         "tools/"
