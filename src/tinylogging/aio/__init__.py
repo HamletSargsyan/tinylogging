@@ -5,14 +5,12 @@ from tinylogging.aio.handlers import (
     BaseAsyncHandler,
     AsyncStreamHandler,
     AsyncFileHandler,
-    AsyncLoggingAdapterHandler,
 )
 
 __all__ = [
     "AsyncLogger",
     "BaseAsyncHandler",
     "AsyncFileHandler",
-    "AsyncLoggingAdapterHandler",
 ]
 
 

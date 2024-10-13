@@ -1,5 +1,4 @@
 from abc import ABC, abstractmethod
-import logging
 import sys
 from typing import Optional
 
@@ -14,7 +13,6 @@ __all__ = [
     "BaseAsyncHandler",
     "AsyncStreamHandler",
     "AsyncFileHandler",
-    "AsyncLoggingAdapterHandler",
 ]
 
 
@@ -67,19 +65,3 @@ class AsyncFileHandler(BaseAsyncHandler):
         async with await open_file(self.file_name, "a") as f:
             await f.write(message)
             await f.flush()
-
-
-class AsyncLoggingAdapterHandler(logging.Handler):
-    def __init__(
-        self,
-        handler: BaseAsyncHandler,
-    ):
-        super().__init__()
-        self.custom_handler = handler
-
-    async def emit(self, record: logging.LogRecord):
-        level = Level[record.levelname]  # cspell: disable-line
-        custom_record = Record(
-            message=self.format(record), level=level, name=record.name
-        )
-        await self.custom_handler.handle(custom_record)

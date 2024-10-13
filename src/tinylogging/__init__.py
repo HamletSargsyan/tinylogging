@@ -15,7 +15,6 @@ from tinylogging.aio.handlers import (
     BaseAsyncHandler,
     AsyncStreamHandler,
     AsyncFileHandler,
-    AsyncLoggingAdapterHandler,
 )
 
 __all__ = [
@@ -31,7 +30,6 @@ __all__ = [
     "BaseAsyncHandler",
     "AsyncStreamHandler",
     "AsyncFileHandler",
-    "AsyncLoggingAdapterHandler",
     "Level",
 ]
 
