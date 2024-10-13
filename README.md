@@ -54,6 +54,28 @@ logger.info("This message will not be logged.")
 logger.enable()
 ```
 
+### Async support
+
+```python
+import anyio
+from tinylogging import AsyncLogger, AsyncFileHandler
+
+
+async def main():
+    logger = AsyncLogger(name="async_logger")
+
+    file_handler = AsyncFileHandler(file_name="app.log")
+    logger.handlers.add(file_handler)
+
+    await logger.info("This is an info message.")
+    await logger.error("This is an error message.")
+    await logger.debug("This is a debug message.")
+
+
+if __name__ == "__main__":
+    anyio.run(main)
+```
+
 ## License
 
 This project is licensed under the [MIT](https://github.com/HamletSargsyan/tiny-logging/blob/main/LICENSE) License.
