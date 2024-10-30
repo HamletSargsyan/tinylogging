@@ -1,0 +1,36 @@
+# cspell: disable
+version: "3"
+
+tasks:
+  default:
+    - task: lint
+    - task: fix
+    - task: format
+
+  lint:
+    cmds:
+      - ruff check --respect-gitignore src
+      - pyright src
+
+  format:
+    cmd: ruff format --respect-gitignore src
+
+  fix:
+    cmd: ruff check --respect-gitignore --fix src
+
+  dev-install:
+    cmds:
+      - pip install --upgrade uv
+      - uv pip install --upgrade ruff pyright pre-commit
+
+  dev-setup:
+    deps:
+      - dev-install
+      - create-config
+    cmds:
+      - pre-commit install
+
+  clean:
+    cmds:
+      - find . -type d -name "__pycache__" -exec rm -rf {} +
+      - rm -rf site .*_cache *.log

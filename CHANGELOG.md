@@ -4,12 +4,12 @@
 
 ### Added
 
-- Async support
-- Added new dependency: `anyio`
+- Поддержка асинхронности
+- Новая зависимость: `anyio`
 
 ### Changed
 
-- Modified the structure and imports of modules for better code organization
+- Изменена структура и импорт модулей для лучшей организации кода
 
 ## [2.2.0] - 2024-10-05
 
@@ -21,7 +21,7 @@
 
 ### Added
 
-- `LoggingAdapterHandler`: an adapter for integration with the `logging` module, allowing the use of custom handlers (`BaseHandler`, `StreamHandler`, etc.) with Python's standard loggers.
+- `LoggingAdapterHandler`: адаптер для интеграции с модулем `logging` позволяющий использовать пользовательские обработчики (`BaseHandler`, `StreamHandler` и т. д.) со стандартными логгерами Python
 
 ## [2.0.0] - 2024-10-04
 
@@ -33,4 +33,4 @@
 
 ### Added
 
-- First release
+- Первый релиз
