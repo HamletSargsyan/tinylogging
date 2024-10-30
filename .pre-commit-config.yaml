@@ -1,16 +1,18 @@
 repos:
   - repo: local
     hooks:
-    - id: ruff check
-      name: ruff check
-      entry: ruff check src --fix
+    - id: lint
+      name: lint
+      entry: task lint
       language: system
       types: [python]
       pass_filenames: false
+      exclude: "src/\\*test\\*.py"
     - id: format
       name: format
-      entry: ruff format src
+      entry: task format
       language: system
       types: [python]
       pass_filenames: false
+      exclude: "src/\\*test\\*.py"
 
