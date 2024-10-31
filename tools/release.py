@@ -3,6 +3,7 @@ import os
 import sys
 from datetime import date
 
+import toml
 import changelog
 from semver import Version
 
@@ -56,13 +57,17 @@ if choice != "y":
     sys.exit(0)
 
 run_command("task fix && task lint && task format")
-run_command("poetry build")
-run_command("poetry publish")
 
 
 with open("version", "w") as f:
     f.write(str(version))
 
+with open("pyproject.toml", "r+") as f:
+    pyproject = toml.load(f)
+
+    pyproject["tool.poetry"]["version"] = str(version)
+
+    toml.dump(pyproject, f)
 
 with open("CHANGELOG.md", "r") as f:
     changes = changelog.loads(f.read())
@@ -98,6 +103,10 @@ with open("release_body.md", "w") as f:
 
 
 run_command('git add . && git commit -a -m "bump version" && git push')
+
+
+run_command("poetry build")
+run_command("poetry publish")
 
 run_command(
     f'gh release create v{version} --target main --notes-file release_body.md {"-p" if prerelease else ""} --title v{version}'
