@@ -37,7 +37,7 @@ tasks:
   clean:
     cmds:
       - find . -type d -name "__pycache__" -exec rm -rf {} +
-      - rm -rf site release_body.md .*_cache *.log
+      - rm -rf site release_body.md .*_cache *.log dist
 
   release:
     cmd: python3 tools/release.py {{.CLI_ARGS}}
