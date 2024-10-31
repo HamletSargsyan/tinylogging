@@ -22,8 +22,8 @@ def usage():
 
 def run_command(command: str):
     if os.system(command):
-        os.system("git reset --hard")
         print(f'\n\nКоманда "{command}" завершилась с ошибкой.')
+        os.system("git reset --hard")
         sys.exit(1)
 
 
@@ -63,12 +63,11 @@ run_command("task lint && task format")
 with open("version", "w") as f:
     f.write(str(version))
 
-with open("pyproject.toml", "r+") as f:
+with open("pyproject.toml", "r") as f:
     pyproject = toml.load(f)
-    pyproject["tool"]["poetry"]["version"] = str(version)
+pyproject["tool"]["poetry"]["version"] = str(version)
 
-    f.seek(0)
-
+with open("pyproject.toml", "w") as f:
     toml.dump(pyproject, f)
 
 with open("CHANGELOG.md", "r") as f:
