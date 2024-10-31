@@ -10,7 +10,7 @@ class Formatter:
     def __init__(
         self,
         time_format: str = "[%H:%M:%S]",
-        template: str = "{time} | {level} | {message}",
+        template: str = "{time} | {level} | {relpath}:{line} | {message}",
         colorize: bool = True,
     ) -> None:
         self.template = template
