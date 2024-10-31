@@ -22,6 +22,7 @@ def usage():
 
 def run_command(command: str):
     if os.system(command):
+        os.system("git reset --hard")
         print(f'\n\nКоманда "{command}" завершилась с ошибкой.')
         sys.exit(1)
 
@@ -56,7 +57,7 @@ choice = input("Сделать релиз? [N/y] ").lower()
 if choice != "y":
     sys.exit(0)
 
-run_command("task fix && task lint && task format")
+run_command("task lint && task format")
 
 
 with open("version", "w") as f:
