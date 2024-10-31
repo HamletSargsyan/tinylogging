@@ -65,7 +65,7 @@ with open("version", "w") as f:
 with open("pyproject.toml", "r+") as f:
     pyproject = toml.load(f)
 
-    pyproject["tool.poetry"]["version"] = str(version)
+    pyproject["tool"]["poetry"]["version"] = str(version)
 
     toml.dump(pyproject, f)
 
