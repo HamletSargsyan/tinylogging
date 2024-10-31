@@ -40,4 +40,4 @@ tasks:
       - rm -rf site release_body.md .*_cache *.log
 
   release:
-    cmd: python3 tools/release.py
+    cmd: python3 tools/release.py {{.CLI_ARGS}}
