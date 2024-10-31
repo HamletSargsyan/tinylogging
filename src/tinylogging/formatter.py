@@ -32,11 +32,11 @@ class Formatter:
             message=record.message,
             time=record.time.strftime(self.time_format),
             name=record.name,
-            file=record.filename,
+            filename=record.filename,
             line=record.line,
             basename=record.basename,
-            function=record.function,
             relpath=record.relpath,
+            function=record.function,
         )
 
         if self.colorize:

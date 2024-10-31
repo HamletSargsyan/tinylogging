@@ -2,6 +2,7 @@
     "cSpell.words": [
         "anyio",
         "colorama",
+        "relpath",
         "tinylogging"
     ]
 }

@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## [Unreleased]
+
+### Added
+
+- Новые атрибуты для класса `Record`: `filename`, `line`, `basename`, `relpath`, `function`
+
+### Changed
+
+- В дефолтном шаблоне (атрибут `template`) для класса `Formatter` отображаются относительный путь к файлу и строку
+
 ## [3.0.0] - 2024-10-13
 
 ### Added

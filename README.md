@@ -6,13 +6,13 @@
 ![PyPI - Version](https://img.shields.io/pypi/v/tinylogging)
 
 
-## Install
+## Установка
 
 ```bash
 pip install tinylogging
 ```
 
-## Usage
+## Использование
 
 ### Create a Logger
 
@@ -23,7 +23,7 @@ logger = Logger(name="my_logger", level=Level.DEBUG)
 
 ```
 
-### Log messages
+### Логирование сообщений
 
 ```python
 logger.info("This is an info message.")
@@ -31,7 +31,7 @@ logger.error("This is an error message.")
 logger.debug("This is a debug message.")
 ```
 
-### Add File Logging
+### Логирования в файл
 
 ```python
 from tinylogging import FileHandler
@@ -42,7 +42,7 @@ logger.handlers.add(file_handler)
 logger.warning("This warning will be logged to both console and file.")
 ```
 
-### Custom Formatting
+### Пользовательское форматирование
 
 ```python
 from tinylogging import Formatter
@@ -52,7 +52,7 @@ logger = Logger(name="custom_logger", formatter=formatter)
 logger.info("This log message uses a custom format.")
 ```
 
-### Disable Logging
+### Отключение логирования
 
 ```python
 logger.disable()
@@ -60,7 +60,7 @@ logger.info("This message will not be logged.")
 logger.enable()
 ```
 
-### Async support
+### Поддержка асинхронности
 
 ```python
 import anyio
@@ -82,6 +82,6 @@ if __name__ == "__main__":
     anyio.run(main)
 ```
 
-## License
+## Лицензия
 
-This project is licensed under the [MIT](https://github.com/HamletSargsyan/tiny-logging/blob/main/LICENSE) License.
+Этот проект лицензирован под лицензией [MIT](https://github.com/HamletSargsyan/tiny-logging/blob/main/LICENSE).
