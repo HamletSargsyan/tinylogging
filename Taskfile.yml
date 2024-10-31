@@ -31,7 +31,6 @@ tasks:
     deps:
       - task: setup-venv
       - task: dev-install
-      - task: create-config
     cmds:
       - pre-commit install
 
