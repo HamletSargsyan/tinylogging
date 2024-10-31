@@ -22,14 +22,25 @@ tasks:
       - pip install --upgrade uv
       - uv pip install --upgrade ruff pyright pre-commit
 
+  setup-venv:
+    cmds:
+      - python3 -m venv .venv
+      - source .venv/bin/activate
+
   dev-setup:
     deps:
-      - dev-install
-      - create-config
+      - task: setup-venv
+      - task: dev-install
+      - task: create-config
     cmds:
       - pre-commit install
 
   clean:
     cmds:
       - find . -type d -name "__pycache__" -exec rm -rf {} +
-      - rm -rf site .*_cache *.log
+      - rm -rf site release_body.md .*_cache *.log
+
+  release:
+    deps:
+      - task: dev-setup
+    cmd: python3 tools/release.py
