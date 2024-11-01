@@ -19,17 +19,10 @@ tasks:
 
   dev-install:
     cmds:
-      - pip install --upgrade uv
-      - uv pip install --upgrade ruff pyright pre-commit
-
-  setup-venv:
-    cmds:
-      - python3 -m venv .venv
-      - source .venv/bin/activate
+      - pip install --upgrade ruff pyright pre-commit
 
   dev-setup:
     deps:
-      - task: setup-venv
       - task: dev-install
     cmds:
       - pre-commit install

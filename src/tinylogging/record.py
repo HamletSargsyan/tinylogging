@@ -28,16 +28,22 @@ class Record:
 
         depth = self._get_stack_index()
         frame = inspect.stack()[depth]
-        self.filename = frame.filename
-        self.line = frame.lineno
-        self.function = frame.function
+
+        depth = self._get_stack_index()
+        frame = inspect.currentframe()
+        for _ in range(depth):
+            frame = frame.f_back
+
+        self.filename = frame.f_code.co_filename
+        self.line = frame.f_lineno
+        self.function = frame.f_code.co_name
 
     def _get_stack_index(self) -> int:
         current_frame = inspect.currentframe()
         index = 0
         while current_frame:
-            index += 1
+            if current_frame.f_code.co_name == "log":
+                return index + 1
             current_frame = current_frame.f_back
-            if current_frame and current_frame.f_code.co_name == "log":
-                break
-        return index + 1
+            index += 1
+        return 1
