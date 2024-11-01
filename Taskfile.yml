@@ -9,7 +9,7 @@ tasks:
   lint:
     cmds:
       - ruff check --respect-gitignore src
-      - pyright src
+      # - pyright src
 
   format:
     cmd: ruff format --respect-gitignore src

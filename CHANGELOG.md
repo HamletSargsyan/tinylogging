@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.2.0] - 2024-11-01
+
 ### Fixed
 
 - Ошибка при обнаружении глубины стека (#3)
