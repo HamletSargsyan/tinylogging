@@ -103,11 +103,10 @@ with open("release_body.md", "w") as f:
     f.write(content)
 
 
-run_command('git add . && git commit -a -m "bump version" && git push')
-
 
 run_command("poetry build")
 run_command("poetry publish")
+run_command('git add . && git commit -a -m "bump version" && git push')
 
 run_command(
     f'gh release create v{version} --target main --notes-file release_body.md {"-p" if prerelease else ""} --title v{version}'

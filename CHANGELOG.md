@@ -7,8 +7,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [3.3.0] - 2025-01-11
-
 ### Fixed
 
 - Исправлена проблема в `LoggingAdapterHandler`, из-за которой атрибуты `filename`, `function` и `line` не устанавливались для объекта `Record`
