@@ -1,11 +1,11 @@
+from tinylogging.formatter import Formatter
 from tinylogging.level import Level
 from tinylogging.record import Record
-from tinylogging.formatter import Formatter
 from tinylogging.sync.handlers import (
     BaseHandler,
-    StreamHandler,
     FileHandler,
     LoggingAdapterHandler,
+    StreamHandler,
 )
 
 __all__ = [

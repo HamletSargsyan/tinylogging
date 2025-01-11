@@ -1,12 +1,11 @@
-from abc import ABC, abstractmethod
 import logging
 import sys
+from abc import ABC, abstractmethod
 from typing import Optional, TextIO
 
-from tinylogging.record import Record
-from tinylogging.level import Level
 from tinylogging.formatter import Formatter
-
+from tinylogging.level import Level
+from tinylogging.record import Record
 
 __all__ = [
     "BaseHandler",
@@ -80,4 +79,9 @@ class LoggingAdapterHandler(logging.Handler):
         custom_record = Record(
             message=self.format(record), level=level, name=record.name
         )
+
+        custom_record.filename = record.filename
+        custom_record.function = record.funcName
+        custom_record.line = record.lineno
+
         self.custom_handler.handle(custom_record)

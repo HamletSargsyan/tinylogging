@@ -1,13 +1,12 @@
-from abc import ABC, abstractmethod
 import sys
+from abc import ABC, abstractmethod
 from typing import Optional
 
 from anyio import AsyncFile, open_file
 
-from tinylogging.record import Record
-from tinylogging.level import Level
 from tinylogging.formatter import Formatter
-
+from tinylogging.level import Level
+from tinylogging.record import Record
 
 __all__ = [
     "BaseAsyncHandler",

@@ -1,20 +1,18 @@
+from tinylogging.aio import AsyncLogger
+from tinylogging.aio.handlers import (
+    AsyncFileHandler,
+    AsyncStreamHandler,
+    BaseAsyncHandler,
+)
+from tinylogging.formatter import Formatter
 from tinylogging.level import Level
 from tinylogging.record import Record
-from tinylogging.formatter import Formatter
-
 from tinylogging.sync import Logger
 from tinylogging.sync.handlers import (
     BaseHandler,
-    StreamHandler,
     FileHandler,
     LoggingAdapterHandler,
-)
-
-from tinylogging.aio import AsyncLogger
-from tinylogging.aio.handlers import (
-    BaseAsyncHandler,
-    AsyncStreamHandler,
-    AsyncFileHandler,
+    StreamHandler,
 )
 
 __all__ = [

@@ -1,7 +1,7 @@
 from colorama import Fore, Style
+
 from tinylogging.level import Level
 from tinylogging.record import Record
-
 
 __all__ = ["Formatter"]
 
