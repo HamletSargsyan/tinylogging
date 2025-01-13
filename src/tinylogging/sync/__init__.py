@@ -6,6 +6,7 @@ from tinylogging.sync.handlers import (
     FileHandler,
     LoggingAdapterHandler,
     StreamHandler,
+    TelegramHandler,
 )
 
 __all__ = [
@@ -14,6 +15,7 @@ __all__ = [
     "BaseHandler",
     "FileHandler",
     "LoggingAdapterHandler",
+    "TelegramHandler",
 ]
 
 

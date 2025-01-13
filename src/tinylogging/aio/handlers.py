@@ -2,6 +2,7 @@ import sys
 from abc import ABC, abstractmethod
 from typing import Optional
 
+import httpx
 from anyio import AsyncFile, open_file
 
 from tinylogging.formatter import Formatter
@@ -12,6 +13,7 @@ __all__ = [
     "BaseAsyncHandler",
     "AsyncStreamHandler",
     "AsyncFileHandler",
+    "AsyncTelegramHandler",
 ]
 
 
@@ -64,3 +66,28 @@ class AsyncFileHandler(BaseAsyncHandler):
         async with await open_file(self.file_name, "a") as f:
             await f.write(message)
             await f.flush()
+
+
+class AsyncTelegramHandler(BaseAsyncHandler):
+    def __init__(
+        self, token: str, chat_id: int | str, ignore_errors: bool = False, **kwargs
+    ):
+        super().__init__(**kwargs)
+        self.token = token
+        self.chat_id = chat_id
+        self.ignore_errors = ignore_errors
+        self.api_url = f"https://api.telegram.org/bot{self.token}/sendMessage"
+
+    async def emit(self, record: Record):
+        _colorize = self.formatter.colorize
+        self.formatter.colorize = False
+        text = self.formatter.format(record)
+        self.formatter.colorize = _colorize
+
+        data = {"chat_id": self.chat_id, "text": text, "parse_mode": "HTML"}
+
+        async with httpx.AsyncClient() as client:
+            response = await client.post(self.api_url, json=data)
+
+            if not self.ignore_errors:
+                response.raise_for_status()
