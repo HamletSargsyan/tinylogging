@@ -106,7 +106,11 @@ class TelegramHandler(BaseHandler):
         text = self.formatter.format(record)
         self.formatter.colorize = _colorize
 
-        data = {"chat_id": self.chat_id, "text": text, "parse_mode": "HTML"}
+        data = {
+            "chat_id": self.chat_id,
+            "text": text,
+            "parse_mode": "HTML",
+        }
 
         with httpx.Client() as client:
             response = client.post(self.api_url, json=data)

@@ -84,7 +84,11 @@ class AsyncTelegramHandler(BaseAsyncHandler):
         text = self.formatter.format(record)
         self.formatter.colorize = _colorize
 
-        data = {"chat_id": self.chat_id, "text": text, "parse_mode": "HTML"}
+        data = {
+            "chat_id": self.chat_id,
+            "text": text,
+            "parse_mode": "HTML",
+        }
 
         async with httpx.AsyncClient() as client:
             response = await client.post(self.api_url, json=data)
