@@ -9,8 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- обработчик, который отправляет логи в telegram (#4)
-- форматтер для обработчика, который отправляет логи в telegram
+- Обработчик для отправки логов в Telegram (`AsyncTelegramHandler`, `TelegramHandler`) (#4)
+- Новый форматтер `TelegramFormatter` для обработки и форматирования сообщений, отправляемых в Telegram
+- Зависимость `httpx` для работы с Telegram API
+
+### Removed
+
+- Прекращена поддержка Python 3.8
 
 ## [3.3.0] - 2025-01-11
 
