@@ -26,8 +26,11 @@ jobs:
         with:
           version: "3.x"
 
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+
       - name: Install requirements
-        run: pip install -r requirements.txt
+        run: poetry install
 
       - name: Install dev requirements
         run: task dev-install
