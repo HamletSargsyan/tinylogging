@@ -1,25 +1,18 @@
 [build-system]
-requires = ["poetry-core"]
+requires = [ "poetry-core",]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "tinylogging"
-version = "3.3.0"
+version = "4.0.0"
 description = ""
-authors = ["Hamlet <hamlets849@gmail.com>"]
+authors = [ "Hamlet <hamlets849@gmail.com>",]
 license = "MIT"
 readme = "README.md"
 repository = "https://github.com/HamletSargsyan/tinylogging"
 homepage = "https://github.com/HamletSargsyan/tinylogging"
-keywords = ["logging"]
-classifiers = [
-    "Development Status :: 5 - Production/Stable",
-    "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
-    "Programming Language :: Python",
-    "Programming Language :: Python :: 3",
-    "Operating System :: OS Independent",
-]
+keywords = [ "logging",]
+classifiers = [ "Development Status :: 5 - Production/Stable", "Intended Audience :: Developers", "License :: OSI Approved :: MIT License", "Programming Language :: Python", "Programming Language :: Python :: 3", "Operating System :: OS Independent",]
 
 [tool.poetry.dependencies]
 python = "^3.9"
