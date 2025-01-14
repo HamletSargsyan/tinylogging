@@ -14,7 +14,7 @@ pip install tinylogging
 
 ## Использование
 
-### Create a Logger
+### Создание нового логгера
 
 ```python
 from tinylogging import Logger, Level
