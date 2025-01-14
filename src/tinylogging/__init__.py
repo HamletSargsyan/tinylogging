@@ -3,6 +3,7 @@ from tinylogging.aio.handlers import (
     AsyncFileHandler,
     AsyncStreamHandler,
     BaseAsyncHandler,
+    AsyncTelegramHandler,
 )
 from tinylogging.formatter import Formatter
 from tinylogging.level import Level
@@ -13,6 +14,7 @@ from tinylogging.sync.handlers import (
     FileHandler,
     LoggingAdapterHandler,
     StreamHandler,
+    TelegramHandler,
 )
 
 __all__ = [
@@ -29,6 +31,8 @@ __all__ = [
     "AsyncStreamHandler",
     "AsyncFileHandler",
     "Level",
+    "AsyncTelegramHandler",
+    "TelegramHandler",
 ]
 
 COLOR_MAP = Formatter().color_map

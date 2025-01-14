@@ -2,6 +2,7 @@ from tinylogging.aio.handlers import (
     AsyncFileHandler,
     AsyncStreamHandler,
     BaseAsyncHandler,
+    AsyncTelegramHandler,
 )
 from tinylogging.formatter import Formatter
 from tinylogging.level import Level
@@ -11,6 +12,7 @@ __all__ = [
     "AsyncLogger",
     "BaseAsyncHandler",
     "AsyncFileHandler",
+    "AsyncTelegramHandler",
 ]
 
 

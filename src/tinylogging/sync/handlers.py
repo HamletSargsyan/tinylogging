@@ -3,6 +3,8 @@ import sys
 from abc import ABC, abstractmethod
 from typing import Optional, TextIO
 
+import httpx
+
 from tinylogging.formatter import Formatter
 from tinylogging.level import Level
 from tinylogging.record import Record
@@ -12,6 +14,7 @@ __all__ = [
     "StreamHandler",
     "FileHandler",
     "LoggingAdapterHandler",
+    "TelegramHandler",
 ]
 
 
@@ -85,3 +88,28 @@ class LoggingAdapterHandler(logging.Handler):
         custom_record.line = record.lineno
 
         self.custom_handler.handle(custom_record)
+
+
+class TelegramHandler(BaseHandler):
+    def __init__(
+        self, token: str, chat_id: int | str, ignore_errors: bool = False, **kwargs
+    ):
+        super().__init__(**kwargs)
+        self.token = token
+        self.chat_id = chat_id
+        self.ignore_errors = ignore_errors
+        self.api_url = f"https://api.telegram.org/bot{self.token}/sendMessage"
+
+    def emit(self, record: Record):
+        _colorize = self.formatter.colorize
+        self.formatter.colorize = False
+        text = self.formatter.format(record)
+        self.formatter.colorize = _colorize
+
+        data = {"chat_id": self.chat_id, "text": text, "parse_mode": "HTML"}
+
+        with httpx.Client() as client:
+            response = client.post(self.api_url, json=data)
+
+            if not self.ignore_errors:
+                response.raise_for_status()

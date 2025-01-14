@@ -27,7 +27,15 @@ class Formatter:
         }
 
     def format(self, record: Record) -> str:
-        formatted_text = self.template.format(
+        formatted_text = self._format(record)
+
+        if self.colorize:
+            color = self.color_map.get(record.level, "")
+            return f"{color}{formatted_text}{Style.RESET_ALL}\n"
+        return formatted_text + "\n"
+
+    def _format(self, record: Record):
+        return self.template.format(
             level=record.level.name,
             message=record.message,
             time=record.time.strftime(self.time_format),
@@ -38,8 +46,3 @@ class Formatter:
             relpath=record.relpath,
             function=record.function,
         )
-
-        if self.colorize:
-            color = self.color_map.get(record.level, "")
-            return f"{color}{formatted_text}{Style.RESET_ALL}\n"
-        return formatted_text + "\n"
