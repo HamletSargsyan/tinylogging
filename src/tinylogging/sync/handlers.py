@@ -1,7 +1,7 @@
 import logging
 import sys
 from abc import ABC, abstractmethod
-from typing import TextIO
+from typing import TextIO, Optional
 
 import httpx
 
@@ -41,7 +41,7 @@ class StreamHandler(BaseHandler):
         self,
         formatter: Formatter = Formatter(),
         level: Level = Level.NOTSET,
-        stream: TextIO | None = None,
+        stream: Optional[TextIO] = None,
     ) -> None:
         super().__init__(formatter=formatter, level=level)
         self.stream = stream or sys.stdout  # type: TextIO

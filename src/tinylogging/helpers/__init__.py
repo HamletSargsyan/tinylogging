@@ -11,7 +11,7 @@ __all__ = [
 class TelegramFormatter(Formatter):
     def __init__(self, time_format: str = "%H:%M:%S"):
         template = (
-            "<b>{level}</b>\n\n"
+            "<b>{emoji} {level}</b>\n\n"
             "<b>time:</b> <code>{time}</code>\n"
             "<b>logger:</b> <code>{name}</code>\n"
             "<b>file:</b> <code>{relpath}</code>\n"

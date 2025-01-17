@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Добавлена поддержка эмодзи для уровней логов в `Formatter`
+
+### Changed
+
+- Изменён формат времени по умолчанию в `TelegramFormatter` с `[%H:%M:%S]` на `%H:%M:%S`
+
 ## [4.0.0] - 2025-01-14
 
 ### Added

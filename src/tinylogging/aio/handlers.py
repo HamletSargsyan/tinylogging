@@ -1,5 +1,6 @@
 import sys
 from abc import ABC, abstractmethod
+from typing import Optional
 
 import httpx
 from anyio import AsyncFile, open_file
@@ -39,7 +40,7 @@ class AsyncStreamHandler(BaseAsyncHandler):
         self,
         formatter: Formatter = Formatter(),
         level: Level = Level.NOTSET,
-        stream: AsyncFile[str] | None = None,
+        stream: Optional[AsyncFile[str]] = None,
     ) -> None:
         super().__init__(formatter=formatter, level=level)
         self.stream = stream or AsyncFile(sys.stdout)
