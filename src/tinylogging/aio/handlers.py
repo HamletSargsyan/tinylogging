@@ -73,12 +73,14 @@ class AsyncTelegramHandler(BaseAsyncHandler):
         self,
         token: str,
         chat_id: int | str,
+        message_thread_id: Optional[int] = None,
         ignore_errors: bool = False,
         **kwargs,
     ):
         super().__init__(**kwargs)
         self.token = token
         self.chat_id = chat_id
+        self.message_thread_id = message_thread_id
         self.ignore_errors = ignore_errors
         self.api_url = f"https://api.telegram.org/bot{self.token}/sendMessage"
 
@@ -90,6 +92,7 @@ class AsyncTelegramHandler(BaseAsyncHandler):
 
         data = {
             "chat_id": self.chat_id,
+            "message_thread_id": self.message_thread_id,
             "text": text,
             "parse_mode": "HTML",
         }
