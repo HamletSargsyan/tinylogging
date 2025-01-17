@@ -25,6 +25,15 @@ class Formatter:
             Level.ERROR: Fore.LIGHTRED_EX,  # cspell: disable-line
             Level.CRITICAL: Fore.RED + Style.BRIGHT,
         }
+        self.emojis: dict[Level, str] = {
+            Level.TRACE: "🧐",
+            Level.DEBUG: "🐛",
+            Level.INFO: "💡",
+            Level.NOTICE: "📌",
+            Level.WARNING: "⚠️",
+            Level.ERROR: "🚨",
+            Level.CRITICAL: "💥",
+        }
 
     def format(self, record: Record) -> str:
         formatted_text = self._format(record)
@@ -45,4 +54,5 @@ class Formatter:
             basename=record.basename,
             relpath=record.relpath,
             function=record.function,
+            emoji=self.emojis.get(record.level, ""),
         )

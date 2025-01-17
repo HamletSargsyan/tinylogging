@@ -1,7 +1,7 @@
 import logging
 import sys
 from abc import ABC, abstractmethod
-from typing import Optional, TextIO
+from typing import TextIO
 
 import httpx
 
@@ -41,7 +41,7 @@ class StreamHandler(BaseHandler):
         self,
         formatter: Formatter = Formatter(),
         level: Level = Level.NOTSET,
-        stream: Optional[TextIO] = None,
+        stream: TextIO | None = None,
     ) -> None:
         super().__init__(formatter=formatter, level=level)
         self.stream = stream or sys.stdout  # type: TextIO
@@ -80,7 +80,9 @@ class LoggingAdapterHandler(logging.Handler):
     def emit(self, record: logging.LogRecord):
         level = Level[record.levelname]  # cspell: disable-line
         custom_record = Record(
-            message=self.format(record), level=level, name=record.name
+            message=self.format(record),
+            level=level,
+            name=record.name,
         )
 
         custom_record.filename = record.filename
@@ -92,7 +94,11 @@ class LoggingAdapterHandler(logging.Handler):
 
 class TelegramHandler(BaseHandler):
     def __init__(
-        self, token: str, chat_id: int | str, ignore_errors: bool = False, **kwargs
+        self,
+        token: str,
+        chat_id: int | str,
+        ignore_errors: bool = False,
+        **kwargs,
     ):
         super().__init__(**kwargs)
         self.token = token

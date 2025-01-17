@@ -1,6 +1,5 @@
 import sys
 from abc import ABC, abstractmethod
-from typing import Optional
 
 import httpx
 from anyio import AsyncFile, open_file
@@ -40,7 +39,7 @@ class AsyncStreamHandler(BaseAsyncHandler):
         self,
         formatter: Formatter = Formatter(),
         level: Level = Level.NOTSET,
-        stream: Optional[AsyncFile[str]] = None,
+        stream: AsyncFile[str] | None = None,
     ) -> None:
         super().__init__(formatter=formatter, level=level)
         self.stream = stream or AsyncFile(sys.stdout)
@@ -70,7 +69,11 @@ class AsyncFileHandler(BaseAsyncHandler):
 
 class AsyncTelegramHandler(BaseAsyncHandler):
     def __init__(
-        self, token: str, chat_id: int | str, ignore_errors: bool = False, **kwargs
+        self,
+        token: str,
+        chat_id: int | str,
+        ignore_errors: bool = False,
+        **kwargs,
     ):
         super().__init__(**kwargs)
         self.token = token
