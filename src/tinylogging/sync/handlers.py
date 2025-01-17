@@ -98,11 +98,13 @@ class TelegramHandler(BaseHandler):
         token: str,
         chat_id: int | str,
         ignore_errors: bool = False,
+        message_thread_id: Optional[int] = None,
         **kwargs,
     ):
         super().__init__(**kwargs)
         self.token = token
         self.chat_id = chat_id
+        self.message_thread_id = message_thread_id
         self.ignore_errors = ignore_errors
         self.api_url = f"https://api.telegram.org/bot{self.token}/sendMessage"
 
@@ -115,6 +117,7 @@ class TelegramHandler(BaseHandler):
         data = {
             "chat_id": self.chat_id,
             "text": text,
+            "message_thread_id": self.message_thread_id,
             "parse_mode": "HTML",
         }
 
