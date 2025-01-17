@@ -34,7 +34,7 @@ class Logger:
         self.handlers = handlers or {StreamHandler(self.formatter, self.level)}
 
     def log(self, message: str, level: Level):
-        if self.level > level or self.is_disabled:
+        if self.is_disabled or self.level > level:
             return
 
         record = Record(message, level, self.name)

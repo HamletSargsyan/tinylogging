@@ -31,7 +31,7 @@ class AsyncLogger:
         self.handlers = handlers or {AsyncStreamHandler(self.formatter, self.level)}
 
     async def log(self, message: str, level: Level):
-        if self.level > level or self.is_disabled:
+        if self.is_disabled or self.level > level:
             return
 
         record = Record(message, level, self.name)

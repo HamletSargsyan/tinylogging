@@ -15,6 +15,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Изменён формат времени по умолчанию в `TelegramFormatter` с `[%H:%M:%S]` на `%H:%M:%S`
 
+### Fixed
+
+- Исправлена ошибка, из-за которой сообщения могли выводиться даже при отключённом логгере
+
 ## [4.0.0] - 2025-01-14
 
 ### Added
