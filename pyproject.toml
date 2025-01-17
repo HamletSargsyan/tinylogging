@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "tinylogging"
-version = "4.0.0"
+version = "4.1.0"
 description = ""
 authors = [ "Hamlet <hamlets849@gmail.com>",]
 license = "MIT"
