@@ -43,7 +43,7 @@ class Formatter:
             return f"{color}{formatted_text}{Style.RESET_ALL}\n"
         return formatted_text + "\n"
 
-    def _format(self, record: Record):
+    def _format(self, record: Record) -> str:
         return self.template.format(
             level=record.level.name,
             message=record.message,

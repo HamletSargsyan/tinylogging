@@ -30,7 +30,7 @@ class AsyncLogger:
         self.is_disabled = False
         self.handlers = handlers or {AsyncStreamHandler(self.formatter, self.level)}
 
-    async def log(self, message: str, level: Level):
+    async def log(self, message: str, level: Level) -> None:
         if self.is_disabled or self.level > level:
             return
 
@@ -39,29 +39,29 @@ class AsyncLogger:
         for handler in self.handlers:
             await handler.handle(record)
 
-    async def trace(self, message: str):
+    async def trace(self, message: str) -> None:
         await self.log(message, level=Level.TRACE)
 
-    async def debug(self, message: str):
+    async def debug(self, message: str) -> None:
         await self.log(message, level=Level.DEBUG)
 
-    async def info(self, message: str):
+    async def info(self, message: str) -> None:
         await self.log(message, level=Level.INFO)
 
-    async def notice(self, message: str):
+    async def notice(self, message: str) -> None:
         await self.log(message, level=Level.NOTICE)
 
-    async def warning(self, message: str):
+    async def warning(self, message: str) -> None:
         await self.log(message, level=Level.WARNING)
 
-    async def error(self, message: str):
+    async def error(self, message: str) -> None:
         await self.log(message, level=Level.ERROR)
 
-    async def critical(self, message: str):
+    async def critical(self, message: str) -> None:
         await self.log(message, level=Level.CRITICAL)
 
-    def enable(self):
+    def enable(self) -> None:
         self.is_disabled = False
 
-    def disable(self):
+    def disable(self) -> None:
         self.is_disabled = True

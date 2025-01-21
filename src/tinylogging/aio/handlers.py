@@ -30,7 +30,7 @@ class BaseAsyncHandler(ABC):
     async def emit(self, record: Record) -> None:
         raise NotImplementedError
 
-    async def handle(self, record: Record):
+    async def handle(self, record: Record) -> None:
         if record.level >= self.level:
             await self.emit(record)
 
@@ -45,7 +45,7 @@ class AsyncStreamHandler(BaseAsyncHandler):
         super().__init__(formatter=formatter, level=level)
         self.stream = stream or AsyncFile(sys.stdout)
 
-    async def emit(self, record: Record):
+    async def emit(self, record: Record) -> None:
         message = self.formatter.format(record)
         await self.stream.write(message)
         await self.stream.flush()
@@ -61,7 +61,7 @@ class AsyncFileHandler(BaseAsyncHandler):
         super().__init__(formatter=formatter, level=level)
         self.file_name = file_name
 
-    async def emit(self, record: Record):
+    async def emit(self, record: Record) -> None:
         message = self.formatter.format(record)
         async with await open_file(self.file_name, "a") as f:
             await f.write(message)
@@ -76,7 +76,7 @@ class AsyncTelegramHandler(BaseAsyncHandler):
         message_thread_id: Optional[int] = None,
         ignore_errors: bool = False,
         **kwargs,
-    ):
+    ) -> None:
         super().__init__(**kwargs)
         self.token = token
         self.chat_id = chat_id
@@ -84,7 +84,7 @@ class AsyncTelegramHandler(BaseAsyncHandler):
         self.ignore_errors = ignore_errors
         self.api_url = f"https://api.telegram.org/bot{self.token}/sendMessage"
 
-    async def emit(self, record: Record):
+    async def emit(self, record: Record) -> None:
         _colorize = self.formatter.colorize
         self.formatter.colorize = False
         text = self.formatter.format(record)

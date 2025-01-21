@@ -24,7 +24,7 @@ class Record:
     def relpath(self) -> str:
         return os.path.relpath(self.filename)
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         self.time = datetime.now()
 
         depth = self._get_stack_index()
@@ -34,6 +34,9 @@ class Record:
         frame = inspect.currentframe()
         for _ in range(depth):
             frame = frame.f_back
+
+        if not frame:
+            raise RuntimeError("Failed to get stack frame")
 
         self.filename = frame.f_code.co_filename
         self.line = frame.f_lineno

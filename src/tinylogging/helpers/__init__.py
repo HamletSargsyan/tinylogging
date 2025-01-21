@@ -20,6 +20,6 @@ class TelegramFormatter(Formatter):
         )
         super().__init__(time_format=time_format, template=template, colorize=False)
 
-    def format(self, record: Record):
+    def format(self, record: Record) -> str:
         record.message = html.escape(record.message)
         return self._format(record)

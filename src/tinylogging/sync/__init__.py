@@ -33,7 +33,7 @@ class Logger:
         self.is_disabled = False
         self.handlers = handlers or {StreamHandler(self.formatter, self.level)}
 
-    def log(self, message: str, level: Level):
+    def log(self, message: str, level: Level) -> None:
         if self.is_disabled or self.level > level:
             return
 
@@ -42,29 +42,29 @@ class Logger:
         for handler in self.handlers:
             handler.handle(record)
 
-    def trace(self, message: str):
+    def trace(self, message: str) -> None:
         self.log(message, level=Level.TRACE)
 
-    def debug(self, message: str):
+    def debug(self, message: str) -> None:
         self.log(message, level=Level.DEBUG)
 
-    def info(self, message: str):
+    def info(self, message: str) -> None:
         self.log(message, level=Level.INFO)
 
-    def notice(self, message: str):
+    def notice(self, message: str) -> None:
         self.log(message, level=Level.NOTICE)
 
-    def warning(self, message: str):
+    def warning(self, message: str) -> None:
         self.log(message, level=Level.WARNING)
 
-    def error(self, message: str):
+    def error(self, message: str) -> None:
         self.log(message, level=Level.ERROR)
 
-    def critical(self, message: str):
+    def critical(self, message: str) -> None:
         self.log(message, level=Level.CRITICAL)
 
-    def enable(self):
+    def enable(self) -> None:
         self.is_disabled = False
 
-    def disable(self):
+    def disable(self) -> None:
         self.is_disabled = True

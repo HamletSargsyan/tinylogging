@@ -31,7 +31,7 @@ class BaseHandler(ABC):
     def emit(self, record: Record) -> None:
         raise NotImplementedError
 
-    def handle(self, record: Record):
+    def handle(self, record: Record) -> None:
         if record.level >= self.level:
             self.emit(record)
 
@@ -46,7 +46,7 @@ class StreamHandler(BaseHandler):
         super().__init__(formatter=formatter, level=level)
         self.stream = stream or sys.stdout  # type: TextIO
 
-    def emit(self, record: Record):
+    def emit(self, record: Record) -> None:
         message = self.formatter.format(record)
         self.stream.write(message)
         self.stream.flush()
@@ -62,9 +62,9 @@ class FileHandler(BaseHandler):
         super().__init__(formatter=formatter, level=level)
         self.file_name = file_name
 
-    def emit(self, record: Record):
+    def emit(self, record: Record) -> None:
         message = self.formatter.format(record)
-        with open(self.file_name, "a") as f:
+        with open(self.file_name, "a", encoding="utf-8") as f:
             f.write(message)
             f.flush()
 
@@ -73,11 +73,11 @@ class LoggingAdapterHandler(logging.Handler):
     def __init__(
         self,
         handler: BaseHandler,
-    ):
+    ) -> None:
         super().__init__()
         self.custom_handler = handler
 
-    def emit(self, record: logging.LogRecord):
+    def emit(self, record: logging.LogRecord) -> None:
         level = Level[record.levelname]  # cspell: disable-line
         custom_record = Record(
             message=self.format(record),
@@ -100,7 +100,7 @@ class TelegramHandler(BaseHandler):
         ignore_errors: bool = False,
         message_thread_id: Optional[int] = None,
         **kwargs,
-    ):
+    ) -> None:
         super().__init__(**kwargs)
         self.token = token
         self.chat_id = chat_id
@@ -108,7 +108,7 @@ class TelegramHandler(BaseHandler):
         self.ignore_errors = ignore_errors
         self.api_url = f"https://api.telegram.org/bot{self.token}/sendMessage"
 
-    def emit(self, record: Record):
+    def emit(self, record: Record) -> None:
         _colorize = self.formatter.colorize
         self.formatter.colorize = False
         text = self.formatter.format(record)
