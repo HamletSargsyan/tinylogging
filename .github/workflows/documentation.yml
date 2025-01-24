@@ -38,7 +38,3 @@ jobs:
       - run: git config user.name 'github-actions[bot]' && git config user.email 'github-actions[bot]@users.noreply.github.com'
       - name: Publish docs
         run: mkdocs gh-deploy
-
-      - uses: dropseed/changerelease@v1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
