@@ -34,3 +34,7 @@ tasks:
 
   release:
     cmd: python3 tools/release.py {{.CLI_ARGS}}
+
+  docs-setup:
+    cmds:
+      - pip install mkdocs mkdocs-material mkdocs-git-revision-date-localized-plugin 'mkdocstrings[python]'
