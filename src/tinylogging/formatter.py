@@ -13,6 +13,14 @@ class Formatter:
         template: str = "{time} | {level} | {relpath}:{line} | {message}",
         colorize: bool = True,
     ) -> None:
+        """
+        Initializes the Formatter instance.
+
+        Args:
+            time_format (str): The format for the timestamp in log messages.
+            template (str): The template for formatting log messages.
+            colorize (bool): Whether to colorize the log messages.
+        """
         self.template = template
         self.time_format = time_format
         self.colorize = colorize
@@ -36,6 +44,15 @@ class Formatter:
         }
 
     def format(self, record: Record) -> str:
+        """
+        Formats a log record.
+
+        Args:
+            record (Record): The log record to format.
+
+        Returns:
+            str: The formatted log message.
+        """
         formatted_text = self._format(record)
 
         if self.colorize:
@@ -44,6 +61,15 @@ class Formatter:
         return formatted_text + "\n"
 
     def _format(self, record: Record) -> str:
+        """
+        Internal method to format a log record based on the template.
+
+        Args:
+            record (Record): The log record to format.
+
+        Returns:
+            str: The formatted log message.
+        """
         return self.template.format(
             level=record.level.name,
             message=record.message,

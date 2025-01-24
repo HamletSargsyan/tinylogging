@@ -19,6 +19,13 @@ __all__ = [
 
 
 class BaseHandler(ABC):
+    """Abstract base class for all handlers.
+
+    Args:
+        formatter (Formatter): Formatter instance to format the log records.
+        level (Level): Logging level for the handler.
+    """
+
     def __init__(
         self,
         formatter: Formatter = Formatter(),
@@ -29,14 +36,32 @@ class BaseHandler(ABC):
 
     @abstractmethod
     def emit(self, record: Record) -> None:
+        """Emit a log record.
+
+        Args:
+            record (Record): The log record to be emitted.
+        """
         raise NotImplementedError
 
     def handle(self, record: Record) -> None:
+        """Handle a log record.
+
+        Args:
+            record (Record): The log record to be handled.
+        """
         if record.level >= self.level:
             self.emit(record)
 
 
 class StreamHandler(BaseHandler):
+    """Handler for streaming log records to a stream.
+
+    Args:
+        formatter (Formatter): Formatter instance to format the log records.
+        level (Level): Logging level for the handler.
+        stream (Optional[TextIO]): Stream to write log records to.
+    """
+
     def __init__(
         self,
         formatter: Formatter = Formatter(),
@@ -47,12 +72,25 @@ class StreamHandler(BaseHandler):
         self.stream = stream or sys.stdout  # type: TextIO
 
     def emit(self, record: Record) -> None:
+        """Emit a log record to the stream.
+
+        Args:
+            record (Record): The log record to be emitted.
+        """
         message = self.formatter.format(record)
         self.stream.write(message)
         self.stream.flush()
 
 
 class FileHandler(BaseHandler):
+    """Handler for writing log records to a file.
+
+    Args:
+        file_name (str): Name of the file to write log records to.
+        level (Level): Logging level for the handler.
+        formatter (Formatter): Formatter instance to format the log records.
+    """
+
     def __init__(
         self,
         file_name: str,
@@ -63,6 +101,11 @@ class FileHandler(BaseHandler):
         self.file_name = file_name
 
     def emit(self, record: Record) -> None:
+        """Emit a log record to the file.
+
+        Args:
+            record (Record): The log record to be emitted.
+        """
         message = self.formatter.format(record)
         with open(self.file_name, "a", encoding="utf-8") as f:
             f.write(message)
@@ -70,6 +113,12 @@ class FileHandler(BaseHandler):
 
 
 class LoggingAdapterHandler(logging.Handler):
+    """Adapter handler to integrate with the standard logging module.
+
+    Args:
+        handler (BaseHandler): Custom handler to delegate log records to.
+    """
+
     def __init__(
         self,
         handler: BaseHandler,
@@ -78,6 +127,11 @@ class LoggingAdapterHandler(logging.Handler):
         self.custom_handler = handler
 
     def emit(self, record: logging.LogRecord) -> None:
+        """Emit a log record using the custom handler.
+
+        Args:
+            record (logging.LogRecord): The log record to be emitted.
+        """
         level = Level[record.levelname]  # cspell: disable-line
         custom_record = Record(
             message=self.format(record),
@@ -93,6 +147,16 @@ class LoggingAdapterHandler(logging.Handler):
 
 
 class TelegramHandler(BaseHandler):
+    """Handler for sending log records to a Telegram chat.
+
+    Args:
+        token (str): Telegram bot token.
+        chat_id (int | str): Chat ID to send messages to.
+        ignore_errors (bool): Whether to ignore errors when sending messages.
+        message_thread_id (Optional[int]): ID of the message thread.
+        **kwargs: Additional keyword arguments for the base handler.
+    """
+
     def __init__(
         self,
         token: str,
@@ -109,6 +173,11 @@ class TelegramHandler(BaseHandler):
         self.api_url = f"https://api.telegram.org/bot{self.token}/sendMessage"
 
     def emit(self, record: Record) -> None:
+        """Emit a log record to the Telegram chat.
+
+        Args:
+            record (Record): The log record to be emitted.
+        """
         _colorize = self.formatter.colorize
         self.formatter.colorize = False
         text = self.formatter.format(record)

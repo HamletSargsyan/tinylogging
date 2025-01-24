@@ -10,6 +10,12 @@ __all__ = [
 
 class TelegramFormatter(Formatter):
     def __init__(self, time_format: str = "%H:%M:%S"):
+        """
+        Initializes the TelegramFormatter with a specific time format and template.
+
+        Args:
+            time_format (str): The format string for formatting the time. Defaults to "%H:%M:%S".
+        """
         template = (
             "<b>{emoji} {level}</b>\n\n"
             "<b>time:</b> <code>{time}</code>\n"
@@ -21,5 +27,14 @@ class TelegramFormatter(Formatter):
         super().__init__(time_format=time_format, template=template, colorize=False)
 
     def format(self, record: Record) -> str:
+        """
+        Formats a log record into a string suitable for Telegram.
+
+        Args:
+            record (Record): The log record to format.
+
+        Returns:
+            str: The formatted log record as a string.
+        """
         record.message = html.escape(record.message)
         return self._format(record)

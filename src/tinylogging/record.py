@@ -8,6 +8,18 @@ from tinylogging.level import Level
 
 @dataclass
 class Record:
+    """Represents a log record.
+
+    Attributes:
+        message (str): The log message.
+        level (Level): The log level.
+        name (str): The name of the logger.
+        time (datetime): The time the log record was created.
+        filename (str): The name of the file where the log record was created.
+        line (int): The line number in the file where the log record was created.
+        function (str): The function name where the log record was created.
+    """
+
     message: str
     level: Level
     name: str
@@ -18,13 +30,24 @@ class Record:
 
     @property
     def basename(self) -> str:
+        """Gets the base name of the file where the log record was created.
+
+        Returns:
+            str: The base name of the file.
+        """
         return os.path.basename(self.filename)
 
     @property
     def relpath(self) -> str:
+        """Gets the relative path of the file where the log record was created.
+
+        Returns:
+            str: The relative path of the file.
+        """
         return os.path.relpath(self.filename)
 
     def __post_init__(self) -> None:
+        """Initializes additional attributes after the dataclass is created."""
         self.time = datetime.now()
 
         depth = self._get_stack_index()
@@ -43,6 +66,11 @@ class Record:
         self.function = frame.f_code.co_name
 
     def _get_stack_index(self) -> int:
+        """Gets the index of the stack frame for the log record.
+
+        Returns:
+            int: The index of the stack frame.
+        """
         current_frame = inspect.currentframe()
         index = 0
         while current_frame:
