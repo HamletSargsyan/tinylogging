@@ -6,6 +6,7 @@
 ![PyPI - Version](https://img.shields.io/pypi/v/tinylogging)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/tinylogging)
 ![Checks](https://github.com/HamletSargsyan/tinylogging/actions/workflows/check.yml/badge.svg)
+![Documentation](https://github.com/HamletSargsyan/tinylogging/actions/workflows/documentation.yml/badge.svg)
 
 ## Installation
 
