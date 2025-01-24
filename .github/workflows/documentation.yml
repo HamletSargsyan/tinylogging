@@ -31,7 +31,8 @@ jobs:
           version: "3.x"
 
       - run: task docs-setup
-      - run: rm -rf docs/{index.md,changelog.md}
+      - run: |
+          rm -rf docs/{index.md,changelog.md}
           cp README.md docs/index.md
           cp CHANGELOG.md docs/changelog.md
       - run: git config user.name 'github-actions[bot]' && git config user.email 'github-actions[bot]@users.noreply.github.com'
