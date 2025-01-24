@@ -11,6 +11,7 @@ on:
       - ".github/workflows/documentation.yml"
       - "README.md"
       - "CHANGELOG.md"
+      - "src/**.py"
 
 jobs:
   docs:
@@ -35,6 +36,4 @@ jobs:
           cp CHANGELOG.md docs/changelog.md
       - run: git config user.name 'github-actions[bot]' && git config user.email 'github-actions[bot]@users.noreply.github.com'
       - name: Publish docs
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: mkdocs gh-deploy --force
+        run: mkdocs gh-deploy
