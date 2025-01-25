@@ -36,6 +36,3 @@ __all__ = [
     "TelegramHandler",
     "helpers",
 ]
-
-COLOR_MAP = Formatter().color_map
-"""Deprecated"""

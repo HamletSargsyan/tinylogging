@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Documentation for project (#6)
 - Typings for project
 
+### Removed
+
+- `COLOR_MAP` from `tinylogging.__init__.py`
+
 ## [4.2.0] - 2025-01-17
 
 ### Added
