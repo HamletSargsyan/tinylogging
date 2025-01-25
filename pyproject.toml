@@ -11,6 +11,7 @@ license = "MIT"
 readme = "README.md"
 repository = "https://github.com/HamletSargsyan/tinylogging"
 homepage = "https://github.com/HamletSargsyan/tinylogging"
+documentation = "https://hamletsargsyan.github.io/tinylogging"
 keywords = ["logging"]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
