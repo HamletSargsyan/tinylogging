@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
-- `COLOR_MAP` from `tinylogging.__init__.py`
+- `COLOR_MAP` from `tinylogging/__init__.py`
 
 ## [4.2.0] - 2025-01-17
 
