@@ -5,7 +5,7 @@ build-backend = "poetry.core.masonry.api"
 [tool.poetry]
 name = "tinylogging"
 version = "4.2.0"
-description = ""
+description = "python logging library"
 authors = ["Hamlet <hamlets849@gmail.com>"]
 license = "MIT"
 readme = "README.md"
