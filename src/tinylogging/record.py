@@ -48,7 +48,11 @@ class Record:
         return os.path.relpath(self.filename)
 
     def __post_init__(self) -> None:
-        """Initializes additional attributes after the dataclass is created."""
+        """Initializes additional attributes after the dataclass is created.
+
+        Raises:
+            RuntimeError: If the stack frame cannot be retrieved.
+        """
         self.time = datetime.now()
 
         depth = self._get_stack_index()
