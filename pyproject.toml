@@ -1,29 +1,17 @@
 [project]
 name = "tinylogging"
-version = "5.0.0"
+version = "5.0.1"
 description = "python logging library"
-authors = [
-    {name = "Hamlet", email = "hamlets849@gmail.com"}
-]
 license = "MIT"
 readme = "README.md"
 keywords = ["logging"]
-classifiers = [
-    "Development Status :: 5 - Production/Stable",
-    "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
-    "Programming Language :: Python",
-    "Programming Language :: Python :: 3",
-    "Operating System :: OS Independent",
-    "Topic :: System :: Logging",
-    "Typing :: Typed"
-]
+classifiers = ["Development Status :: 5 - Production/Stable", "Intended Audience :: Developers", "License :: OSI Approved :: MIT License", "Programming Language :: Python", "Programming Language :: Python :: 3", "Operating System :: OS Independent", "Topic :: System :: Logging", "Typing :: Typed"]
 requires-python = ">=3.9"
-dependencies = [
-    "colorama (>=0.4.6,<0.5.0)",
-    "anyio (>=4.6.2,<5.0.0)",
-    "httpx (>=0.28.1,<0.29.0)",
-]
+dependencies = ["colorama (>=0.4.6,<0.5.0)", "anyio (>=4.6.2,<5.0.0)", "httpx (>=0.28.1,<0.29.0)"]
+
+[[project.authors]]
+name = "Hamlet"
+email = "hamlets849@gmail.com"
 
 [project.urls]
 repository = "https://github.com/HamletSargsyan/tinylogging"
