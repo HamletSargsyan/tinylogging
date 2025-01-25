@@ -13,7 +13,16 @@ repository = "https://github.com/HamletSargsyan/tinylogging"
 homepage = "https://github.com/HamletSargsyan/tinylogging"
 documentation = "https://hamletsargsyan.github.io/tinylogging"
 keywords = ["logging"]
-classifiers = ["Development Status :: 5 - Production/Stable", "Intended Audience :: Developers", "License :: OSI Approved :: MIT License", "Programming Language :: Python", "Programming Language :: Python :: 3", "Operating System :: OS Independent", "Topic :: System :: Logging", "Typing :: Typed"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    "Topic :: System :: Logging",
+    "Typing :: Typed"
+]
 
 [tool.poetry.dependencies]
 python = "^3.9"
