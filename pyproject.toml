@@ -1,17 +1,12 @@
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
-
-[tool.poetry]
+[project]
 name = "tinylogging"
 version = "5.0.0"
 description = "python logging library"
-authors = ["Hamlet <hamlets849@gmail.com>"]
+authors = [
+    {name = "Hamlet", email = "hamlets849@gmail.com"}
+]
 license = "MIT"
 readme = "README.md"
-repository = "https://github.com/HamletSargsyan/tinylogging"
-homepage = "https://github.com/HamletSargsyan/tinylogging"
-documentation = "https://hamletsargsyan.github.io/tinylogging"
 keywords = ["logging"]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
@@ -23,13 +18,19 @@ classifiers = [
     "Topic :: System :: Logging",
     "Typing :: Typed"
 ]
+requires-python = ">=3.9"
+dependencies = [
+    "colorama (>=0.4.6,<0.5.0)",
+    "anyio (>=4.6.2,<5.0.0)",
+    "httpx (>=0.28.1,<0.29.0)",
+]
 
-[tool.poetry.dependencies]
-python = "^3.9"
-colorama = "^0.4.6"
-anyio = "4.6.2.post1"
-httpx = "^0.28.1"
+[project.urls]
+repository = "https://github.com/HamletSargsyan/tinylogging"
+homepage = "https://github.com/HamletSargsyan/tinylogging"
+documentation = "https://hamletsargsyan.github.io/tinylogging"
+"Bug Tracker" = "https://github.com/HamletSargsyan/tinylogging/issues"
 
-[tool.poetry.group.dev.dependencies]
-ruff = "^0.7.1"
-pre-commit = "^4.0.1"
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
