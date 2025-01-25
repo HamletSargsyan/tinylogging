@@ -22,7 +22,7 @@ def usage():
 
 def run_command(command: str):
     if os.system(command):
-        print(f'\n\nКоманда "{command}" завершилась с ошибкой.')
+        print(f'\n\nCommand "{command}" failed.')
         os.system("git reset --hard")
         sys.exit(1)
 
@@ -46,13 +46,13 @@ match sys.argv[1].lower():
     case "build":
         version = version.bump_build()
     case arg:
-        print(f"Неизвестный аргумент `{arg}`")
+        print(f"Unknown argument `{arg}`")
         usage()
         sys.exit(1)
 
 
 print(f"{old_version} -> {version}")
-choice = input("Сделать релиз? [N/y] ").lower()
+choice = input("Create release? [N/y] ").lower()
 
 if choice != "y":
     sys.exit(0)
@@ -113,5 +113,5 @@ run_command(
 )
 run_command("rm release_body.md")
 
-print("\n\nРелиз успешно создан и опубликован.\n\n")
+print("\n\nRelease successfully created and published.\n\n")
 run_command("git fetch --tags")
