@@ -9,7 +9,7 @@ tasks:
   lint:
     cmds:
       - ruff check --respect-gitignore src
-      - mypy src
+      - mypy --install-types --non-interactive src
       # - pyright src
 
   format:
