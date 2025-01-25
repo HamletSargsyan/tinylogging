@@ -19,7 +19,6 @@ from tinylogging.sync.handlers import (
 )
 
 __all__ = [
-    "COLOR_MAP",
     "Record",
     "Formatter",
     "BaseHandler",
