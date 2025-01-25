@@ -9,9 +9,11 @@ tasks:
   lint:
     cmds:
       - ruff check --respect-gitignore src
+      - mypy src
       # - pyright src
 
   format:
+    ignore_error: true
     cmd: ruff format --respect-gitignore src
 
   fix:
@@ -19,7 +21,7 @@ tasks:
 
   dev-install:
     cmds:
-      - pip install --upgrade ruff pyright pre-commit
+      - pip install --upgrade ruff pyright pre-commit mypy
 
   dev-setup:
     deps:

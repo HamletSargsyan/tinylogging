@@ -1,6 +1,6 @@
 import sys
 from abc import ABC, abstractmethod
-from typing import Optional
+from typing import Optional, Any
 
 import httpx
 from anyio import AsyncFile, open_file
@@ -141,7 +141,7 @@ class AsyncTelegramHandler(BaseAsyncHandler):
         chat_id: int | str,
         message_thread_id: Optional[int] = None,
         ignore_errors: bool = False,
-        **kwargs,
+        **kwargs: Any,
     ) -> None:
         """
         Initializes the AsyncTelegramHandler.

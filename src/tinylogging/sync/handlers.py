@@ -1,7 +1,7 @@
 import logging
 import sys
 from abc import ABC, abstractmethod
-from typing import TextIO, Optional
+from typing import TextIO, Optional, Any
 
 import httpx
 
@@ -163,7 +163,7 @@ class TelegramHandler(BaseHandler):
         chat_id: int | str,
         ignore_errors: bool = False,
         message_thread_id: Optional[int] = None,
-        **kwargs,
+        **kwargs: Any,
     ) -> None:
         super().__init__(**kwargs)
         self.token = token
