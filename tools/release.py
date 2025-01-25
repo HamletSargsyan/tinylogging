@@ -3,7 +3,7 @@ import os
 import sys
 from datetime import date
 
-import toml
+import tomlkit as toml
 import changelog
 from semver import Version
 
@@ -64,7 +64,7 @@ with open("version", "w") as f:
     f.write(str(version))
 
 with open("pyproject.toml", "r") as f:
-    pyproject = toml.load(f)
+    pyproject = toml.load(f).unwrap()
 pyproject["tool"]["poetry"]["version"] = str(version)
 
 with open("pyproject.toml", "w") as f:
