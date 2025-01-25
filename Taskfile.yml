@@ -21,7 +21,7 @@ tasks:
 
   dev-install:
     cmds:
-      - pip install --upgrade ruff pyright pre-commit mypy
+      - pip install --upgrade ruff pyright pre-commit mypy changelog semver tomlkit
 
   dev-setup:
     deps:
